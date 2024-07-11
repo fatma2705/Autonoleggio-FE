@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { NgIf } from '@angular/common';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, NgIf],
+  imports: [ReactiveFormsModule, RouterModule, NgIf,RegisterComponent,RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -34,7 +35,7 @@ errorMessage: string = '';
             if (this.authService.getCurrentUser().includes('ROLE_ADMIN')) {
               this.router.navigate(['admin']);
             } else {
-              this.router.navigate(['/analysis/home']);
+              this.router.navigate(['/register']);
             }
 
 

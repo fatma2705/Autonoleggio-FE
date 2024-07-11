@@ -1,0 +1,7 @@
+export enum TipoAuto {
+  SUV = 'SUV',
+  BERLINA = 'BERLINA',
+  STATION_WAGON = 'STATION_WAGON',
+  COUPE = 'COUPE',
+  CABRIOLET = 'CABRIOLET'
+}
