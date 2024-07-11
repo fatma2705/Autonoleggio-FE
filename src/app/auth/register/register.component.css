@@ -11,10 +11,23 @@
   padding: 20px;
   border-radius: 10px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
 }
 
-.form-left, .form-right {
+.register-form h2 {
+  text-align: center;
+}
+
+.signin-link {
+  text-align: center;
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.form-left {
   flex: 1;
   padding: 10px;
 }
@@ -25,4 +38,35 @@
 
 button {
   margin-top: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.form-group p {
+  color: red;
+  font-size: 12px;
+  margin: 5px 0 0;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
 }

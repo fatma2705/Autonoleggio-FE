@@ -1,60 +1,60 @@
 <div class="register-container" style="background-image: url('/assets/login_background.jpg'); background-size: cover;">
   <div class="register-form">
     <h2>Register</h2>
+    <span class="signin-link">Already have an account? <a routerLink="/login">Sign In</a></span>
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
       <div class="form-left">
         <div class="form-group">
           <label for="username">Username</label>
           <input id="username" formControlName="username" type="text" />
+          <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+            <p>Username è obbligatorio.</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="password">Password</label>
           <input id="password" formControlName="password" type="password" />
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+            <p>Password è obbligatoria.</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="confermaPassword">Conferma Password</label>
           <input id="confermaPassword" formControlName="confermaPassword" type="password" />
+          <div *ngIf="registerForm.get('confermaPassword')?.invalid && registerForm.get('confermaPassword')?.touched">
+            <p>Conferma Password è obbligatoria.</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="email">Email</label>
           <input id="email" formControlName="email" type="email" />
+          <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+            <p>Email non è valida.</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="nome">Nome</label>
           <input id="nome" formControlName="nome" type="text" />
+          <div *ngIf="registerForm.get('nome')?.invalid && registerForm.get('nome')?.touched">
+            <p>Nome è obbligatorio.</p>
+          </div>
         </div>
         <div class="form-group">
           <label for="cognome">Cognome</label>
           <input id="cognome" formControlName="cognome" type="text" />
+          <div *ngIf="registerForm.get('cognome')?.invalid && registerForm.get('cognome')?.touched">
+            <p>Cognome è obbligatorio.</p>
+          </div>
         </div>
       </div>
-      <div class="form-right">
-        <div class="form-group">
-          <label for="attivo">Attivo</label>
-          <input id="attivo" formControlName="attivo" type="checkbox" />
-        </div>
-        <div class="form-group">
-          <label for="dataConseguimentoPatente">Data Conseguimento Patente</label>
-          <input id="dataConseguimentoPatente" formControlName="dataConseguimentoPatente" type="date" />
-        </div>
-        <div class="form-group">
-          <label for="creditoDisponibile">Credito Disponibile</label>
-          <input id="creditoDisponibile" formControlName="creditoDisponibile" type="number" step="0.01" />
-        </div>
-        <div class="form-group">
-          <label for="tipoAuto">Tipo Auto</label>
-          <select id="tipoAuto" formControlName="tipoAuto">
-            <option *ngFor="let tipo of tipoAutoOptions" [value]="tipo">{{ tipo }}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="tipoMotore">Tipo Motore</label>
-          <select id="tipoMotore" formControlName="tipoMotore">
-            <option *ngFor="let motore of tipoMotoreOptions" [value]="motore">{{ motore }}</option>
-          </select>
-        </div>
-        <button type="submit" [disabled]="registerForm.invalid">Register</button>
+      <div class="form-group">
+        <label for="dataConseguimentoPatente">Data Conseguimento Patente</label>
+        <input id="dataConseguimentoPatente" formControlName="dataConseguimentoPatente" type="date" />
       </div>
+      <div *ngIf="registerForm.errors?.['mismatch']">
+        <p>Le password non coincidono.</p>
+      </div>
+      <button type="submit">Register</button>
     </form>
   </div>
 </div>

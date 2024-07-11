@@ -1,45 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
-import { TipoAuto } from '../../models/tipo-auto.enum';
-import { TipoMotore } from '../../models/tipo-motore.enum';
-import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { inject } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule,FormsModule,BrowserModule,CommonModule],
+  imports: [ReactiveFormsModule, RouterModule, NgIf],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup ;
-  tipoAutoOptions = Object.values(TipoAuto);
-  tipoMotoreOptions = Object.values(TipoMotore);
+export class RegisterComponent {
 
-  constructor(private fb: FormBuilder) {}
+  authService = inject(AuthService);
+  router = inject(Router);
 
-  ngOnInit() {
-    this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required],
-      confermaPassword: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      nome: ['', Validators.required],
-      cognome: ['', Validators.required],
-      attivo: [false],
-      dataConseguimentoPatente: ['', Validators.required],
-      creditoDisponibile: [0, [Validators.required, Validators.min(0)]],
-      tipoAuto: ['', Validators.required],
-      tipoMotore: ['', Validators.required]
-    });
+  public registerForm = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+    confermaPassword: new FormControl('', [Validators.required]),
+    nome: new FormControl('', [Validators.required]),
+    cognome: new FormControl('', [Validators.required]),
+    dataConseguimentoPatente: new FormControl('', [Validators.required])
+  }, { validators: this.passwordMatchValidator });
+
+  passwordMatchValidator(form: AbstractControl) {
+    return form.get('password')?.value === form.get('confermaPassword')?.value
+      ? null : { 'mismatch': true };
   }
 
-  onSubmit() {
+  public onSubmit() {
     if (this.registerForm.valid) {
-      console.log('registration' + this.registerForm.value);
-      // Implementa la logica di invio del modulo qui
+      console.log(this.registerForm.value);
+      this.authService.register(this.registerForm.value)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            this.router.navigate(['/login']);
+          },
+          error: (err) => console.log(err)
+        });
     }
   }
+
+
+
+
+
 }
