@@ -1,0 +1,79 @@
+/* Assicurati che il corpo e l'html coprano l'intero schermo */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif; /* Font moderno */
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url('/assets/car-home.jpg'); /* Percorso dell'immagine di sfondo */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.overlay {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Sfondo scuro semitrasparente */
+  
+}
+
+.welcome-container {
+  text-align: center;
+  color: white; /* Colore del testo */
+  margin-bottom: 20px; /* Spazio inferiore tra il testo di benvenuto e il modulo di login */
+}
+
+.welcome-container h1 {
+  font-size: 3rem; /* Dimensione del titolo */
+  margin-bottom: 10px; /* Spazio sotto il titolo */
+}
+
+.welcome-container p {
+  font-size: 1.5rem; /* Dimensione del paragrafo */
+}
+
+.login-form {
+  text-align: center;
+  color: white; /* Colore del testo */
+  background-color: rgba(255, 255, 255, 0.2); /* Sfondo semitrasparente per il form */
+  padding: 20px;
+  border-radius: 10px; /* Angoli arrotondati */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Ombra */
+}
+
+.login-form h2 {
+  font-size: 2rem;
+  margin-bottom: 10px; /* Spazio sotto il titolo */
+}
+
+.login-form p {
+  font-size: 1.1rem;
+  margin-bottom: 20px; /* Spazio sotto il paragrafo */
+}
+
+.login-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px; /* Angoli arrotondati per il bottone */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05); /* Leggero ingrandimento al passaggio del mouse */
+}
