@@ -35,7 +35,7 @@ errorMessage: string = '';
             if (this.authService.getCurrentUser().includes('ROLE_ADMIN')) {
               this.router.navigate(['admin']);
             } else {
-              this.router.navigate(['/register']);
+              this.router.navigate(['/user/home']);
             }
 
 
