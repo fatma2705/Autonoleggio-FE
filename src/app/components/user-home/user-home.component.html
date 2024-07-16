@@ -1,11 +1,32 @@
-<div class="user-home-container">
-  <h1>Benvenuto, {{username}}</h1>
-  <div class="sections">
-    <div class="section">
-      <app-car-search></app-car-search>
+<!-- dashboard.component.html -->
+
+<div class="dashboard-container">
+  <div class="header">
+    <h2>Dashboard</h2>
+  </div>
+
+  <div class="summary card">
+    <h3>Riepilogo delle prenotazioni attive</h3>
+    <ul>
+      <li>Prenotazione 1 - Dettagli</li>
+      <li>Prenotazione 2 - Dettagli</li>
+      <!-- Elenca qui le prenotazioni attive dell'utente -->
+    </ul>
+  </div>
+
+  <div class="actions card">
+    <h3>Azioni disponibili</h3>
+    <div class="action-buttons">
+      <button routerLink="/booking" class="btn-primary">Prenota un'auto</button>
+      <button routerLink="/reservations" class="btn-secondary">Visualizza prenotazioni passate</button>
+      <!-- Aggiungi qui altri pulsanti per azioni aggiuntive -->
     </div>
-    <div class="section">
-      <app-prenotazioni></app-prenotazioni>
-    </div>
+  </div>
+
+  <div class="info card">
+    <h3>Informazioni utili</h3>
+    <p>Promozioni attuali: Sconto del 10% su tutte le prenotazioni estive!</p>
+    <p>Auto in evidenza: Nuovi modelli disponibili!</p>
+    <!-- Aggiungi altre informazioni utili per gli utenti -->
   </div>
 </div>
