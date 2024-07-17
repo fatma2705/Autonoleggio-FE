@@ -11,21 +11,26 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-   constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
+
+  userName: string = '';
+
+  ngOnInit() {
+    const userName = this.authService.getUserName();
+    if (userName) {
+      console.log('nome' + userName);
+      this.userName = userName.toUpperCase();
+    }
+  }
 
 
- onLogout() {
+
+
+
+  onLogout() {
     console.log('Logout button clicked');
     this.router.navigate(['/home']);
   }
 
-userName: string = '';
-
- ngOnInit() {
-    const userName = this.authService.getUserName();
-    if (userName) {
-      this.userName = userName.toUpperCase();
-    }
-  }
 
 }
