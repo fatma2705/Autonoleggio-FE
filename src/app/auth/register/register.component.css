@@ -8,7 +8,7 @@
 
 .register-form {
   background: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+  padding: 5px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -69,4 +69,8 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background: #0056b3;
+}
+
+.overlay{
+  background-color: rgba(0, 0, 0, 0.5); 
 }

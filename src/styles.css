@@ -7,6 +7,7 @@ html, body {
 }
 
 body {
+  background-color: #6957577b;
   display: flex;
   flex-direction: column;
 }

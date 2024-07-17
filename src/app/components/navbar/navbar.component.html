@@ -1,16 +1,19 @@
-<!-- navbar.component.html -->
-
-<nav class="navbar">
-  <div class="navbar-container">
+<!-- header.component.html -->
+<header class="header">
+  <div class="header-container">
     <div class="brand">
       <img src="/assets/logo-navbar.png" alt="Logo" class="logo">
       <a routerLink="/" class="brand-text">RentACar</a>
     </div>
-    <ul class="nav-links">
-      <li><a routerLink="/dashboard">Dashboard</a></li>
-      <li><a routerLink="/booking">Prenota un'auto</a></li>
-      <li><a routerLink="/reservations">Le mie prenotazioni</a></li>
-      <li><a routerLink="/profile">Profilo</a></li>
-    </ul>
+    <nav class="nav-links">
+      <a routerLink="/dashboard" routerLinkActive="active-link">Dashboard</a>
+      <a routerLink="/booking" routerLinkActive="active-link">Prenota un'auto</a>
+      <a routerLink="/reservations" routerLinkActive="active-link">Le mie prenotazioni</a>
+      <a routerLink="/profile" routerLinkActive="active-link">Profilo</a>
+    </nav>
+    <div class="user-info">
+      <span>Benvenuto, {{ userName }}</span>
+      <button (click)="onLogout()">Logout</button>
+    </div>
   </div>
-</nav>
+</header>

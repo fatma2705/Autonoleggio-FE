@@ -6,6 +6,7 @@
   background-image: url('/assets/login_background.jpg'); 
   background-size: cover;
   background-position: center;
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .login-card {
@@ -75,4 +76,8 @@ button:hover {
 .error-message {
   color: red;
   margin-top: 10px;
+}
+
+.overlay{
+  background-color: rgba(0, 0, 0, 0.5); 
 }
