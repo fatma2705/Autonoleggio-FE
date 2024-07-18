@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../auth/auth.service';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -16,21 +16,33 @@ export class NavbarComponent {
   userName: string = '';
 
   ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.updateUserName();
+      }
+    });
+    this.updateUserName();
+  }
+
+  updateUserName() {
     const userName = this.authService.getUserName();
     if (userName) {
       console.log('nome' + userName);
-      this.userName = userName.toUpperCase();
+      this.userName = userName;
+    } else {
+      this.userName = '';
     }
-  }
-
-
-
-
-
+}
   onLogout() {
     console.log('Logout button clicked');
     this.router.navigate(['/home']);
   }
 
+
+
+
+
+
+  
 
 }

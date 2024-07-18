@@ -4,22 +4,27 @@ import { AuthService } from '../../auth/auth.service';
 @Component({
   selector: 'app-user-home',
   standalone: true,
-  imports: [ ],
+  imports: [],
   templateUrl: './user-home.component.html',
   styleUrl: './user-home.component.css'
 })
 export class UserHomeComponent {
-username: string =  '';
+  userName: string = '';
+  constructor(private authService: AuthService) { }
 
-constructor(private authService: AuthService) { }
 
 
-    
-    ngOnInit() {
-    const username = this.authService.getUserName();
-    if (username) {
-      this.username = username.toUpperCase();
+  ngOnInit() {
+    const userName = this.authService.getUserName();
+    if (userName) {
+      console.log('nome' + userName);
+      this.userName = userName;
     }
   }
+
+
+
+
+
 
 }

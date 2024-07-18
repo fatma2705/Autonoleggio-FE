@@ -62,8 +62,12 @@ export class AuthService {
     const token = this.tokenStorage;
      const decodedToken: any = jwtDecode(token);
      console.log(decodedToken.nome + 'nome decoded token');
-      return decodedToken.nome; 
+      return  this.capitalizeFirstLetter(decodedToken.nome); 
    }
+
+    capitalizeFirstLetter(string: string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
    getCurrentUser() {
     const token = this.tokenStorage;

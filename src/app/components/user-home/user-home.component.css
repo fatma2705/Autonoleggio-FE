@@ -1,87 +1,46 @@
-/* dashboard.component.css */
-
 .dashboard-container {
-  max-width: 800px;
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 20px;
-  background-color:#6957577b;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.header h2 {
-  color: #333333;
-  font-size: 2em;
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .card {
   background-color: #ffffff;
   padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
-.card h3 {
-  font-size: 1.5em;
-  color: #333333;
-  margin-bottom: 10px;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-ul li {
-  background-color: #e3f2fd;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 4px;
 }
 
 .action-buttons {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 
-.action-buttons button {
-  margin: 0 10px;
-  padding: 12px 24px;
-  font-size: 16px;
-  cursor: pointer;
-  border: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+.action-buttons .btn-primary,
+.action-buttons .btn-secondary {
+  margin-bottom: 10px;
 }
 
-.action-buttons button.btn-primary {
-  background-color: #007bff;
-  color: #ffffff;
-}
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
+  }
 
-.action-buttons button.btn-primary:hover {
-  background-color: #0056b3;
-}
-
-.action-buttons button.btn-secondary {
-  background-color: #6c757d;
-  color: #ffffff;
-}
-
-.action-buttons button.btn-secondary:hover {
-  background-color: #5a6268;
-}
-
-.info p {
-  margin: 10px 0;
-  background-color: #e3f2fd;
-  padding: 10px;
-  border-radius: 4px;
+  .action-buttons .btn-primary,
+  .action-buttons .btn-secondary {
+    margin-bottom: 10px;
+  }
 }
