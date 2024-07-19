@@ -17,3 +17,6 @@ app-root {
   flex-direction: column;
   min-height: 100vh; /* Altezza minima della root app al 100% del viewport */
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,32 +1,26 @@
-<div class="dashboard-container">
-  <div class="header">
-    <h2>Bello Rivederti {{userName}}</h2>
+<div class="dashboard">
+  <mat-toolbar color="primary">
+    <span>Benvenuto su RentACar!</span>
+  </mat-toolbar>
+  
+  <div class="full-width image-section">
+    <img src="/assets/dashboard3.jpg" alt="Benvenuto" class="welcome-image">
   </div>
 
-  <div class="content-grid">
-    <div class="summary card">
-      <h3>Riepilogo delle prenotazioni attive</h3>
-      <ul>
-        <li>Prenotazione 1 - Dettagli</li>
-        <li>Prenotazione 2 - Dettagli</li>
-        <!-- Elenca qui le prenotazioni attive dell'utente -->
-      </ul>
-    </div>
+  <div class="presentation-section">
+    <h2>Scopri le Nostre Caratteristiche</h2>
+    <p>RentACar è la tua soluzione ideale per noleggiare auto in modo semplice e veloce. Con la nostra applicazione puoi:</p>
+    <ul>
+      <li>Cercare l'auto perfetta per te tra una vasta gamma di modelli.</li>
+      <li>Effettuare prenotazioni in pochi clic.</li>
+      <li>Gestire le tue prenotazioni in modo efficiente.</li>
+      <li>Ricevere assistenza dedicata 24/7.</li>
+    </ul>
+    <p>Inizia subito cercando un'auto o visualizzando le tue prenotazioni.</p>
+  </div>
 
-    <div class="actions card">
-      <h3>Azioni disponibili</h3>
-      <div class="action-buttons">
-        <button routerLink="/booking" class="btn-primary">Prenota un'auto</button>
-        <button routerLink="/reservations" class="btn-secondary">Visualizza prenotazioni passate</button>
-        <!-- Aggiungi qui altri pulsanti per azioni aggiuntive -->
-      </div>
-    </div>
-
-    <div class="info card">
-      <h3>Informazioni utili</h3>
-      <p>Promozioni attuali: Sconto del 10% su tutte le prenotazioni estive!</p>
-      <p>Auto in evidenza: Nuovi modelli disponibili!</p>
-      <!-- Aggiungi altre informazioni utili per gli utenti -->
-    </div>
+  <div class="actions-section">
+    <button mat-raised-button color="accent" routerLink="/car/list">Cerca un'Auto</button>
+    <button mat-raised-button color="accent" routerLink="/list-bookings">Le Tue Prenotazioni</button>
   </div>
 </div>

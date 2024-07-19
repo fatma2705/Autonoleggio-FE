@@ -1,46 +1,73 @@
-.dashboard-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+.dashboard {
+  text-align: center;
+  margin: 0;
+  color: #333;
+  background-color: #6957577b;
+  padding: 0;
+  border-radius: 0;
 }
 
-.header {
-  margin-bottom: 20px;
+mat-toolbar {
+  background-color: #424242; /* Grigio scuro */
+  color: #fff;
 }
 
-.content-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+.full-width {
   width: 100%;
-  max-width: 1200px;
 }
 
-.card {
-  background-color: #ffffff;
+.image-section {
+  width: 100%;
+  background-color: #757575; /* Grigio medio */
+  padding: 20px 0;
+}
+
+.welcome-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px; /* Imposta un'altezza massima per l'immagine */
+  object-fit: cover; /* Assicura che l'immagine riempia il contenitore senza distorsioni */
+}
+
+.presentation-section {
+  width: 100%;
+  max-width: 1200px; /* Imposta una larghezza massima per la sezione di presentazione */
+  margin: 20px auto;
+  text-align: left;
+  background-color: #e0e0e0; /* Grigio chiaro */
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  color: #333;
 }
 
-.action-buttons {
+.presentation-section h2 {
+  margin-top: 0;
+  color: #424242; /* Grigio scuro */
+}
+
+.presentation-section p, .presentation-section ul {
+  margin-bottom: 16px;
+}
+
+.presentation-section ul {
+  padding-left: 20px;
+}
+
+.actions-section {
+  margin: 20px auto;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.action-buttons .btn-primary,
-.action-buttons .btn-secondary {
-  margin-bottom: 10px;
+.actions-section button {
+  margin: 10px;
+  background-color: #424242; /* Grigio scuro */
+  color: #fff;
+  font-size: 1.2em;
+  padding: 12px 24px;
 }
 
-@media (max-width: 768px) {
-  .action-buttons {
-    flex-direction: column;
-  }
-
-  .action-buttons .btn-primary,
-  .action-buttons .btn-secondary {
-    margin-bottom: 10px;
-  }
+.actions-section button:hover {
+  background-color: #616161; /* Grigio medio-scuro */
 }

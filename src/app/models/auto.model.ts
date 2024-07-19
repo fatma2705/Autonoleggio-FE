@@ -14,5 +14,6 @@ export interface Auto {
   dataImmatricolazione: Date;
   descrizione: string;
   prezzoPerGiornata: number;
+  imageUrl: string;
 
 }

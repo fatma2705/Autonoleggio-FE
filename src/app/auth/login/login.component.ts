@@ -33,9 +33,9 @@ errorMessage: string = '';
           if (this.authService.isLoggedIn()) {
 
             if (this.authService.getCurrentUser().includes('ROLE_ADMIN')) {
-              this.router.navigate(['admin']);
+              this.router.navigate(['user/home']);
             } else {
-              this.router.navigate(['/user/home']);
+              this.router.navigate(['user/home']);
             }
 
 

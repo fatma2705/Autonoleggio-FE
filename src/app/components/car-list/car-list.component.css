@@ -1,0 +1,32 @@
+.auto-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.auto-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.auto-card img {
+  width: 100%;
+  height: auto;
+}
+
+.auto-details {
+  padding: 16px;
+}
+
+.auto-details h2 {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.auto-details p {
+  margin: 4px 0;
+}

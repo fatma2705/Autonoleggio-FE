@@ -1,0 +1,10 @@
+<div class="auto-list">
+  <div class="auto-card" *ngFor="let auto of autoList">
+    <img [src]="auto.imageUrl" alt="{{ auto.marca }} {{ auto.modello }}" />
+    <div class="auto-details">
+      <h2>{{ auto.marca }} {{ auto.modello }}</h2>
+      <p>{{ auto.descrizione }}</p>
+      <p>Prezzo per giornata: {{ auto.prezzoPerGiornata | currency }}</p>
+    </div>
+  </div>
+</div>
