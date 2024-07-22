@@ -4,6 +4,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { UserHomeComponent } from './components/user-home/user-home.component';
 import { CarListComponent } from './components/car-list/car-list.component';
+import { AutoDetailComponent } from './components/auto-detail/auto-detail.component';
 
 export const routes: Routes = [
     {
@@ -23,5 +24,8 @@ export const routes: Routes = [
     },
     {
         path:'car/list' , component:CarListComponent
-    }
+    },
+    { 
+        path: 'car/:id', component: AutoDetailComponent
+    },
 ];

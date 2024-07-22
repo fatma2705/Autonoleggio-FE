@@ -24,4 +24,16 @@ export class CarService {
     });
     return this.http.post<Auto[]>(`${this.apiUrl}/search`, filters);
   }
+
+  getAvailableAutos(dataInizio: string, dataFine: string): Observable<Auto[]> {
+    let params = new HttpParams()
+      .set('dataInizio', dataInizio)
+      .set('dataFine', dataFine);
+
+    return this.http.get<Auto[]>(`${this.apiUrl}/available`, { params });
+  }
+
+  getAutoById(id: string): Observable<Auto> {
+    return this.http.get<Auto>(`${this.apiUrl}/${id}`);
+  }
 }

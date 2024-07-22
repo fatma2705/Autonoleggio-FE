@@ -1,5 +1,31 @@
-<div class="auto-list">
-  <div class="auto-card" *ngFor="let auto of autoList">
+<div class="search-filter">
+  <form (ngSubmit)="search()">
+    <div class="form-group">
+      <label for="pickupLocation">Località di ritiro:</label>
+      <select id="pickupLocation" [(ngModel)]="searchCriteria.pickupLocation" name="pickupLocation" required>
+        <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="dropoffLocation">Località di consegna:</label>
+      <select id="dropoffLocation" [(ngModel)]="searchCriteria.dropoffLocation" name="dropoffLocation" required>
+        <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="pickupDate">Data di ritiro:</label>
+      <input id="pickupDate" type="date" [(ngModel)]="searchCriteria.pickupDate" name="pickupDate" required />
+    </div>
+    <div class="form-group">
+      <label for="dropoffDate">Data di consegna:</label>
+      <input id="dropoffDate" type="date" [(ngModel)]="searchCriteria.dropoffDate" name="dropoffDate" required />
+    </div>
+    <button type="submit">Cerca</button>
+  </form>
+</div>
+
+<div class="auto-list" *ngIf="autoList.length > 0">
+  <div class="auto-card" *ngFor="let auto of autoList" (click)="viewDetails(auto.id)">
     <img [src]="auto.imageUrl" alt="{{ auto.marca }} {{ auto.modello }}" />
     <div class="auto-details">
       <h2>{{ auto.marca }} {{ auto.modello }}</h2>
@@ -7,4 +33,8 @@
       <p>Prezzo per giornata: {{ auto.prezzoPerGiornata | currency }}</p>
     </div>
   </div>
+</div>
+
+<div *ngIf="autoList.length === 0">
+  <p>Nessuna auto disponibile per le date selezionate.</p>
 </div>

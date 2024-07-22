@@ -1,0 +1,50 @@
+<div *ngIf="auto" class="auto-detail-container">
+  <div class="auto-image">
+    <img [src]="auto.imageUrl" alt="{{ auto.marca }} {{ auto.modello }}" />
+  </div>
+  <div class="auto-info">
+    <h1>{{ auto.marca }} {{ auto.modello }}</h1>
+    <p><strong>Marca:</strong> {{ auto.marca }}</p>
+    <p><strong>Modello:</strong> {{ auto.modello }}</p>
+    <p><strong>Cilindrata:</strong> {{ auto.cilindrata }} cm³</p>
+    <p><strong>Tipo Motore:</strong> {{ auto.tipoMotore }}</p>
+    <p><strong>Numero Posti:</strong> {{ auto.numeroPosti }}</p>
+    <p><strong>Cambio Automatico:</strong> {{ auto.cambioAutomatico ? 'Sì' : 'No' }}</p>
+    <p><strong>Data Immatricolazione:</strong> {{ auto.dataImmatricolazione | date }}</p>
+    <p><strong>Descrizione:</strong> {{ auto.descrizione }}</p>
+    <p><strong>Prezzo per Giornata:</strong> {{ auto.prezzoPerGiornata | currency }}</p>
+
+    <!-- Sezione di dettagli della prenotazione -->
+    <div class="rental-details">
+      <button (click)="toggleDetails()">
+        {{ showDetails ? 'Nascondi Dettagli' : 'Mostra Dettagli' }}
+      </button>
+
+      <div *ngIf="showDetails">
+        <h2>Dettagli Prenotazione</h2>
+        <div class="form-group">
+          <label for="pickupLocation">Località di Ritiro:</label>
+          <select id="pickupLocation" [(ngModel)]="selectedPickupLocation" name="pickupLocation" (change)="onDateChange()">
+            <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="dropoffLocation">Località di Consegna:</label>
+          <select id="dropoffLocation" [(ngModel)]="selectedDropoffLocation" name="dropoffLocation" (change)="onDateChange()">
+            <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="pickupDate">Data di Ritiro:</label>
+          <input id="pickupDate" type="date" [(ngModel)]="selectedPickupDate" name="pickupDate" (change)="onDateChange()" />
+        </div>
+        <div class="form-group">
+          <label for="dropoffDate">Data di Consegna:</label>
+          <input id="dropoffDate" type="date" [(ngModel)]="selectedDropoffDate" name="dropoffDate" (change)="onDateChange()" />
+        </div>
+        <p><strong>Prezzo Totale:</strong> {{ totalCost | currency }}</p>
+        <button (click)="prenota()">Prenota</button>
+      </div>
+    </div>
+  </div>
+</div>
