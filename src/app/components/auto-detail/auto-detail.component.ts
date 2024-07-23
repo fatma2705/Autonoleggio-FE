@@ -7,13 +7,16 @@ import { PrenotazioneService } from '../../services/prenotazione.service';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Prenotazione } from '../../models/prenotazione.model';
+import { AuthService } from '../../auth/auth.service';
+import { UtenteService } from '../../services/utente.service';
+import { Utente } from '../../models/utente.model';
 
 @Component({
   selector: 'app-auto-detail',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './auto-detail.component.html',
-  styleUrl: './auto-detail.component.css'
+  styleUrls: ['./auto-detail.component.css']
 })
 export class AutoDetailComponent implements OnInit {
   auto!: Auto;
@@ -24,11 +27,14 @@ export class AutoDetailComponent implements OnInit {
   selectedDropoffDate: string = '';
   showDetails: boolean = false; // Variabile per gestire l'espansione
   totalCost: number = 0; // Prezzo totale per il periodo di noleggio
+  messaggio: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private autoService: CarService,
-    private bookingService: PrenotazioneService
+    private bookingService: PrenotazioneService,
+    private authService: AuthService,
+    private utenteService: UtenteService
   ) {}
 
   ngOnInit(): void {
@@ -43,7 +49,7 @@ export class AutoDetailComponent implements OnInit {
     });
 
     this.route.queryParamMap.subscribe(params => {
-      this.selectedPickupLocation = params.get('pickupLocation')  as Localita;
+      this.selectedPickupLocation = params.get('pickupLocation') as Localita;
       this.selectedDropoffLocation = params.get('dropoffLocation') as Localita;
       this.selectedPickupDate = params.get('pickupDate') || '';
       this.selectedDropoffDate = params.get('dropoffDate') || '';
@@ -71,35 +77,40 @@ export class AutoDetailComponent implements OnInit {
     this.showDetails = !this.showDetails;
   }
 
- prenota(): void {
+  prenota(): void {
     if (this.auto && this.selectedPickupDate && this.selectedDropoffDate) {
-      // Crea un oggetto PrenotazioneDTO
-      const prenotazione: Prenotazione = {
-        id:undefined,
-        auto: this.auto,
-        localitaRitiro: this.selectedPickupLocation,
-        localitaConsegna: this.selectedDropoffLocation,
-        dataInizio: new Date(this.selectedPickupDate),
-        dataFine: new Date(this.selectedDropoffDate),
-        annullata: false,
-        utente : undefined
-      };
+      const username = this.authService.getUsername();
+      
+      this.utenteService.getUtenteByUsername(username).subscribe({
+        next: (utente: Utente) => {
+          const prenotazione: Prenotazione = {
+            id: undefined,
+            auto: this.auto,
+            localitaRitiro: this.selectedPickupLocation,
+            localitaConsegna: this.selectedDropoffLocation,
+            dataInizio: new Date(this.selectedPickupDate),
+            dataFine: new Date(this.selectedDropoffDate),
+            annullata: false,
+            utente: utente
+          };
 
-      // Chiama il servizio per inserire la prenotazione
-      this.bookingService.inserisciPrenotazione(prenotazione).subscribe(
-        response => {
-          // Successo
-          console.log('Prenotazione effettuata con successo:', response);
-          alert('Prenotazione effettuata con successo!');
+          this.bookingService.inserisciPrenotazione(prenotazione).subscribe(
+            response => {
+              this.messaggio = 'Prenotazione effettuata con successo!';
+            },
+            error => {
+              console.error('Errore durante la prenotazione:', error);
+              this.messaggio = 'Si è verificato un errore durante la prenotazione.';
+            }
+          );
         },
-        error => {
-          // Errore
-          console.error('Errore durante la prenotazione:', error);
-          alert('Si è verificato un errore durante la prenotazione.');
+        error: (err) => {
+          console.error('Errore nel recuperare l\'utente:', err);
+          this.messaggio = 'Errore nel recuperare l\'utente.';
         }
-      );
+      });
     } else {
-      alert('Per favore, completa tutti i campi della prenotazione.');
+      this.messaggio = 'Per favore, completa tutti i campi della prenotazione.';
     }
   }
 }

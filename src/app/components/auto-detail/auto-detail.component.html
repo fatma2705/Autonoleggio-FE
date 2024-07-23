@@ -1,3 +1,6 @@
+
+
+
 <div *ngIf="auto" class="auto-detail-container">
   <div class="auto-image">
     <img [src]="auto.imageUrl" alt="{{ auto.marca }} {{ auto.modello }}" />
@@ -47,4 +50,8 @@
       </div>
     </div>
   </div>
+ 
+</div>
+ <div *ngIf="messaggio" [ngClass]="{'alert': true, 'alert-success': messaggio.includes('successo'), 'alert-error': messaggio.includes('errore')}">
+  {{ messaggio }}
 </div>
