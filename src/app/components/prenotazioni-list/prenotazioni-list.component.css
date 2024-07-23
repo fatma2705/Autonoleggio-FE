@@ -1,0 +1,61 @@
+.prenotazioni-list {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.prenotazioni-list h2 {
+  text-align: center;
+  color: #333;
+}
+
+.prenotazioni-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.prenotazioni-list th, .prenotazioni-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.prenotazioni-list th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.prenotazioni-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.prenotazioni-list tr:hover {
+  background-color: #f1f1f1;
+}
+
+.prenotazioni-list button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.prenotazioni-list button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.prenotazioni-list button.annulla {
+  background-color: #f44336; /* Red */
+}
+
+.prenotazioni-list button.dettagli {
+  background-color: #008CBA; /* Blue */
+}

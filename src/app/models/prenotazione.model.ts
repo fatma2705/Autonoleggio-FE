@@ -3,8 +3,8 @@ import { Localita } from "./localita.enum";
 import { Utente } from "./utente.model";
 
 export interface Prenotazione {
-  id?: number;
-  utente?: Utente;
+  id?: number | undefined;
+  utente: Utente;
   auto: Auto;
   dataInizio: Date;
   dataFine: Date;

@@ -1,0 +1,34 @@
+<div class="prenotazioni-list">
+  <h2>Lista delle Prenotazioni</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Utente</th>
+        <th>Auto</th>
+        <th>Località Ritiro</th>
+        <th>Località Consegna</th>
+        <th>Data Inizio</th>
+        <th>Data Fine</th>
+        <th>Annullata</th>
+        <th>Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prenotazione of prenotazioni">
+        <td>{{ prenotazione.id }}</td>
+        <td>{{ prenotazione.utente.nome }}</td>
+        <td>{{ prenotazione.auto.modello }}</td>
+        <td>{{ prenotazione.localitaRitiro }}</td>
+        <td>{{ prenotazione.localitaConsegna }}</td>
+        <td>{{ prenotazione.dataInizio | date }}</td>
+        <td>{{ prenotazione.dataFine | date }}</td>
+        <td>{{ prenotazione.annullata ? 'Sì' : 'No' }}</td>
+        <td>
+          <button (click)="annullaPrenotazione(prenotazione.id!)">Annulla</button>
+          <button (click)="visualizzaDettagli(prenotazione.id!)">Dettagli</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
