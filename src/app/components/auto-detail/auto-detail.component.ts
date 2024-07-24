@@ -10,11 +10,12 @@ import { Prenotazione } from '../../models/prenotazione.model';
 import { AuthService } from '../../auth/auth.service';
 import { UtenteService } from '../../services/utente.service';
 import { Utente } from '../../models/utente.model';
+import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-auto-detail',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ConfirmModalComponent],
   templateUrl: './auto-detail.component.html',
   styleUrls: ['./auto-detail.component.css']
 })
@@ -28,6 +29,7 @@ export class AutoDetailComponent implements OnInit {
   showDetails: boolean = false; // Variabile per gestire l'espansione
   totalCost: number = 0; // Prezzo totale per il periodo di noleggio
   messaggio: string | null = null;
+  showConfirmModal: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -76,8 +78,22 @@ export class AutoDetailComponent implements OnInit {
   toggleDetails(): void {
     this.showDetails = !this.showDetails;
   }
+  prenota() {
+    this.showConfirmModal = true;
+  }
 
-  prenota(): void {
+  // Metodo per gestire la conferma
+  handleConfirmed() {
+    this.showConfirmModal = false;
+    this.effettuaPrenotazione();
+  }
+
+  // Metodo per gestire l'annullamento
+  handleCancelled() {
+    this.showConfirmModal = false;
+  }
+
+  effettuaPrenotazione(): void {
     if (this.auto && this.selectedPickupDate && this.selectedDropoffDate) {
       const username = this.authService.getUsername();
       

@@ -47,6 +47,16 @@
         </div>
         <p><strong>Prezzo Totale:</strong> {{ totalCost | currency }}</p>
         <button (click)="prenota()">Prenota</button>
+        <app-confirm-modal *ngIf="showConfirmModal"
+                   [auto]="auto"
+                   [selectedPickupLocation]="selectedPickupLocation"
+                   [selectedDropoffLocation]="selectedDropoffLocation"
+                   [selectedPickupDate]="selectedPickupDate"
+                   [selectedDropoffDate]="selectedDropoffDate"
+                   [totalCost]="totalCost"
+                   (confirmed)="handleConfirmed()"
+                   (cancelled)="handleCancelled()">
+</app-confirm-modal>
       </div>
     </div>
   </div>

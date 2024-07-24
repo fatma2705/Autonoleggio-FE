@@ -1,0 +1,14 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Conferma Prenotazione</h2>
+    <p><strong>Marca:</strong> {{ auto.marca }}</p>
+    <p><strong>Modello:</strong> {{ auto.modello }}</p>
+    <p><strong>Località di Ritiro:</strong> {{ selectedPickupLocation }}</p>
+    <p><strong>Località di Consegna:</strong> {{ selectedDropoffLocation }}</p>
+    <p><strong>Data di Ritiro:</strong> {{ selectedPickupDate | date }}</p>
+    <p><strong>Data di Consegna:</strong> {{ selectedDropoffDate | date }}</p>
+    <p><strong>Prezzo Totale:</strong> {{ totalCost | currency }}</p>
+    <button class="confirm" (click)="confirm()">Conferma</button>
+    <button class="cancel" (click)="cancel()">Annulla</button>
+  </div>
+</div>
