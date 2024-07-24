@@ -1,0 +1,85 @@
+/* Contenitore principale per i dettagli della prenotazione */
+.prenotazione-detail-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Sezione dei dettagli dell'auto */
+.auto-detail-container {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  display: flex; /* Usa flexbox per allineare l'immagine e le informazioni */
+}
+
+/* Contenitore per l'immagine e le informazioni */
+.auto-image-container {
+  flex: 1; /* Occupa uno spazio proporzionale */
+  max-width: 200px; /* Imposta una larghezza massima fissa per l'immagine */
+  margin-right: 20px; /* Spazio tra l'immagine e le informazioni */
+}
+
+.auto-image {
+  text-align: center;
+}
+
+.auto-image img {
+  max-width: 100%; /* L'immagine non supererà la larghezza del contenitore */
+  height: auto;
+  border-radius: 8px;
+}
+
+/* Informazioni sull'auto */
+.auto-info {
+  flex: 2; /* Occupa uno spazio proporzionale rispetto all'immagine */
+}
+
+.auto-info h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.auto-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.auto-info strong {
+  color: #333;
+}
+
+/* Sezione dei dettagli della prenotazione */
+.prenotazione-info {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+.prenotazione-info h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.prenotazione-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #555;
+}
+
+.prenotazione-info strong {
+  color: #333;
+}
+
+/* Stile per la visualizzazione del prezzo pagato */
+.prenotazione-info .price {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}

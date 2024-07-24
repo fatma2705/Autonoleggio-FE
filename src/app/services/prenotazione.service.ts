@@ -40,4 +40,20 @@ export class PrenotazioneService {
   deletePrenotazione(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  calculateTotalCost(auto: any, selectedPickupDate: string, selectedDropoffDate: string): number {
+    if (auto && selectedPickupDate && selectedDropoffDate) {
+      const startDate = new Date(selectedPickupDate);
+      const endDate = new Date(selectedDropoffDate);
+      const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+      return days * auto.prezzoPerGiornata;
+    } else {
+      return 0;
+    }
+  }
+
+  getPrenotazioneById(id: number): Observable<Prenotazione> {
+    return this.http.get<Prenotazione>(`${this.baseUrl}/${id}`);
+  }
+
 }

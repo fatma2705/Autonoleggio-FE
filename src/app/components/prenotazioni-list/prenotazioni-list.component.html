@@ -18,15 +18,15 @@
       <tr *ngFor="let prenotazione of prenotazioni">
         <td>{{ prenotazione.id }}</td>
         <td>{{ prenotazione.utente.nome }}</td>
-        <td>{{ prenotazione.auto.modello }}</td>
+        <td>{{ prenotazione.auto.modello }} {{ prenotazione.auto.marca }}</td>
         <td>{{ prenotazione.localitaRitiro }}</td>
         <td>{{ prenotazione.localitaConsegna }}</td>
         <td>{{ prenotazione.dataInizio | date }}</td>
         <td>{{ prenotazione.dataFine | date }}</td>
         <td>{{ prenotazione.annullata ? 'Sì' : 'No' }}</td>
         <td>
-          <button (click)="annullaPrenotazione(prenotazione.id!)">Annulla</button>
-          <button (click)="visualizzaDettagli(prenotazione.id!)">Dettagli</button>
+          <button (click)="annullaPrenotazione(prenotazione.id!)" class="annulla">Annulla</button>
+          <button (click)="visualizzaDettagli(prenotazione.id!)" class="dettagli">Dettagli</button>
         </td>
       </tr>
     </tbody>

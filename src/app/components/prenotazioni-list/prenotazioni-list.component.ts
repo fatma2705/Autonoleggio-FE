@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PrenotazioneService } from '../../services/prenotazione.service';
 import { Prenotazione } from '../../models/prenotazione.model';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-prenotazioni-list',
@@ -13,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class PrenotazioniListComponent implements OnInit {
   prenotazioni: Prenotazione[] = [];
 
-  constructor(private prenotazioneService: PrenotazioneService) { }
+  constructor(private prenotazioneService: PrenotazioneService, private router: Router) { }
 
   ngOnInit(): void {
     this.prenotazioneService.getPrenotazioniUtente().subscribe((data: Prenotazione[]) => {
@@ -27,8 +28,8 @@ export class PrenotazioniListComponent implements OnInit {
     });
   }
 
-  visualizzaDettagli(id: number): void {
-    // Implementa la navigazione ai dettagli
-    // Esempio: this.router.navigate(['/prenotazioni', id]);
+ visualizzaDettagli(id: number): void {
+    this.router.navigate(['/prenotazioni/detail', id]);
   }
-}
+
+} 

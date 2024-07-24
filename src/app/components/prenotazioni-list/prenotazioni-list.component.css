@@ -59,3 +59,21 @@
 .prenotazioni-list button.dettagli {
   background-color: #008CBA; /* Blue */
 }
+
+.confirm-dialog {
+  text-align: center;
+}
+
+.confirm-dialog h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.confirm-dialog p {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.confirm-dialog button {
+  margin-right: 8px;
+}

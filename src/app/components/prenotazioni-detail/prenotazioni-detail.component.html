@@ -1,0 +1,33 @@
+<div class="prenotazione-detail-container">
+  <!-- Auto details -->
+  <div *ngIf="prenotazione?.auto" class="auto-detail-container">
+    <div class="auto-image-container">
+      <div class="auto-image">
+        <img [src]="prenotazione.auto.imageUrl" alt="{{ prenotazione.auto.marca }} {{ prenotazione.auto.modello }}" />
+      </div>
+    </div>
+    <div class="auto-info">
+      <h1>{{ prenotazione.auto.marca }} {{ prenotazione.auto.modello }}</h1>
+      <p><strong>Marca:</strong> {{ prenotazione.auto.marca }}</p>
+      <p><strong>Modello:</strong> {{ prenotazione.auto.modello }}</p>
+      <p><strong>Cilindrata:</strong> {{ prenotazione.auto.cilindrata }} cm³</p>
+      <p><strong>Tipo Motore:</strong> {{ prenotazione.auto.tipoMotore }}</p>
+      <p><strong>Numero Posti:</strong> {{ prenotazione.auto.numeroPosti }}</p>
+      <p><strong>Cambio Automatico:</strong> {{ prenotazione.auto.cambioAutomatico ? 'Sì' : 'No' }}</p>
+      <p><strong>Data Immatricolazione:</strong> {{ prenotazione.auto.dataImmatricolazione | date }}</p>
+      <p><strong>Descrizione:</strong> {{ prenotazione.auto.descrizione }}</p>
+    </div>
+  </div>
+
+  <!-- Prenotazione details -->
+  <div class="prenotazione-info">
+    <h2>Dettagli Prenotazione</h2>
+    <p><strong>Utente:</strong> {{ prenotazione.utente.nome }} {{ prenotazione.utente.cognome }}</p>
+    <p><strong>Località Ritiro:</strong> {{ prenotazione.localitaRitiro }}</p>
+    <p><strong>Località Consegna:</strong> {{ prenotazione.localitaConsegna }}</p>
+    <p><strong>Data Inizio:</strong> {{ prenotazione.dataInizio | date }}</p>
+    <p><strong>Data Fine:</strong> {{ prenotazione.dataFine | date }}</p>
+    <p><strong>Annullata:</strong> {{ prenotazione.annullata ? 'Sì' : 'No' }}</p>
+    <p class="price"><strong>Prezzo Pagato:</strong> {{ totalCost | currency }}</p>
+  </div>
+</div>

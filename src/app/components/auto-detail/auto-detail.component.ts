@@ -59,13 +59,11 @@ export class AutoDetailComponent implements OnInit {
     });
   }
 
-  // Calcola il prezzo totale
+  
+
   calculateTotalCost(): void {
     if (this.auto && this.selectedPickupDate && this.selectedDropoffDate) {
-      const startDate = new Date(this.selectedPickupDate);
-      const endDate = new Date(this.selectedDropoffDate);
-      const days = Math.ceil((endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-      this.totalCost = days * this.auto.prezzoPerGiornata;
+      this.totalCost = this.bookingService.calculateTotalCost(this.auto, this.selectedPickupDate, this.selectedDropoffDate);
     } else {
       this.totalCost = 0;
     }

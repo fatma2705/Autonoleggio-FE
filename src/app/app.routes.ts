@@ -6,6 +6,7 @@ import { UserHomeComponent } from './components/user-home/user-home.component';
 import { CarListComponent } from './components/car-list/car-list.component';
 import { AutoDetailComponent } from './components/auto-detail/auto-detail.component';
 import { PrenotazioniListComponent } from './components/prenotazioni-list/prenotazioni-list.component';
+import { PrenotazioniDetailComponent } from './components/prenotazioni-detail/prenotazioni-detail.component';
 
 export const routes: Routes = [
     {
@@ -31,5 +32,8 @@ export const routes: Routes = [
     },
     {
         path: 'prenotazioni', component:PrenotazioniListComponent
+    },
+    {
+        path: 'prenotazioni/detail/:id',component:PrenotazioniDetailComponent
     }
 ];
