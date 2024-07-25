@@ -1,9 +1,0 @@
-<!-- src/app/slider/slider.component.html -->
-<div class="slider">
-  <div class="slide" *ngFor="let slide of sliderArray; let i = index" [ngClass]="{'selected': selectedIndex === i}">
-    <img [src]="slide.img" [alt]="slide.alt">
-    <div class="text">
-      <p>{{ slide.text }}</p>
-    </div>
-  </div>
-</div>

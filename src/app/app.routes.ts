@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HomeComponent } from './components/home/home.component';
-import { UserHomeComponent } from './components/user-home/user-home.component';
+import { HomeComponent } from './components/main/home/home.component';
+import { UserHomeComponent } from './components/user-profile/user-home/user-home.component';
 import { CarListComponent } from './components/car-list/car-list.component';
-import { AutoDetailComponent } from './components/auto-detail/auto-detail.component';
-import { PrenotazioniListComponent } from './components/prenotazioni-list/prenotazioni-list.component';
-import { PrenotazioniDetailComponent } from './components/prenotazioni-detail/prenotazioni-detail.component';
+import { AutoDetailComponent } from './components/auto/auto-detail/auto-detail.component';
+import { PrenotazioniListComponent } from './components/prenotazioni/prenotazioni-list/prenotazioni-list.component';
+import { PrenotazioniDetailComponent } from './components/prenotazioni/prenotazioni-detail/prenotazioni-detail.component';
 
 export const routes: Routes = [
     {

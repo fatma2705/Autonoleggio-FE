@@ -1,0 +1,10 @@
+<div class="dialog__container">
+  <section class="dialog__content">
+    <h1 class="confirm__headline">{{ data.title }}</h1>
+    <p>{{ data.message }}</p>
+  </section>
+  <footer class="dialog__footer">
+    <button mat-button class="button button--secondary" (click)="onCancel()">Annulla</button>
+    <button mat-button class="button button--primary" (click)="onConfirm()">Conferma</button>
+  </footer>
+</div>

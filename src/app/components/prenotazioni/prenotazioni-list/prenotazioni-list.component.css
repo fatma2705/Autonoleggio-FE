@@ -1,3 +1,29 @@
+/* Stili per l'intestazione delle prenotazioni con le icone */
+
+.prenotazioni-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.prenotazioni-header h2 {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.icon-button {
+  font-size: 24px;
+  color: #56595c;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.icon-button:hover {
+  color: #0b0b0b;
+}
+
+/* Stili esistenti per la lista delle prenotazioni */
+
 .prenotazioni-list {
   margin: 20px;
   font-family: Arial, sans-serif;
@@ -53,11 +79,11 @@
 }
 
 .prenotazioni-list button.annulla {
-  background-color: #f44336; /* Red */
+  background-color: #f443368a; /* Red */
 }
 
 .prenotazioni-list button.dettagli {
-  background-color: #008CBA; /* Blue */
+  background-color: #4a4b4c; /* Blue */
 }
 
 .confirm-dialog {

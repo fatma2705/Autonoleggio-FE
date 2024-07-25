@@ -1,9 +1,12 @@
-<div class="prenotazioni-list">
+<div class="prenotazioni-header">
+  <mat-icon (click)="goBack()" class="icon-button" aria-label="Indietro">arrow_back</mat-icon>
+  <mat-icon (click)="reloadPage()" class="icon-button" aria-label="Aggiorna">refresh</mat-icon>
   <h2>Lista delle Prenotazioni</h2>
+</div>
+<div class="prenotazioni-list">
   <table>
     <thead>
       <tr>
-        <th>ID</th>
         <th>Utente</th>
         <th>Auto</th>
         <th>Località Ritiro</th>
@@ -16,7 +19,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let prenotazione of prenotazioni">
-        <td>{{ prenotazione.id }}</td>
         <td>{{ prenotazione.utente.nome }}</td>
         <td>{{ prenotazione.auto.modello }} {{ prenotazione.auto.marca }}</td>
         <td>{{ prenotazione.localitaRitiro }}</td>

@@ -1,91 +1,106 @@
-import { Inject, Injectable, inject } from '@angular/core';
-import { tap } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
-import { jwtDecode } from 'jwt-decode';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  httpClient = inject(HttpClient);
-  
-  private _tokenStorage: any = null;
-
-  public set tokenStorage(value: any) {
-    this._tokenStorage = value;
-  }
-  
-  public get tokenStorage(): any {
-    return this._tokenStorage;
-  }
-
+  private tokenKey: string = 'authToken';
   baseUrl = 'http://localhost:8080/api/auth';
 
-  register(data: any){
-    return this.httpClient.post(`${this.baseUrl}/register`, data);
+  constructor(private httpClient: HttpClient) {}
+
+  // Getter per ottenere il token dal localStorage
+  public get tokenStorage(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 
-  login(data: any){
-    return this.httpClient.post(`${this.baseUrl}/login`, data)
-    .pipe(tap((result:any) => {
-      this.tokenStorage = result.jwt;
-    }));
+  // Setter per impostare il token nel localStorage
+  public set tokenStorage(token: string | null) {
+    if (token) {
+      localStorage.setItem(this.tokenKey, token);
+    } else {
+      localStorage.removeItem(this.tokenKey);
+    }
   }
 
-  logout(){
+  register(data: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/register`, data)
+      .pipe(catchError(this.handleError));
+  }
+
+  login(data: any): Observable<any> {
+    return this.httpClient.post(`${this.baseUrl}/login`, data).pipe(
+      tap((result: any) => {
+        this.tokenStorage = result.jwt;
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  logout(): void {
     this.tokenStorage = null;
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return this.tokenStorage !== null;
   }
+
   private handleError(error: any): Observable<never> {
-  let errorMessage = 'Errore di autenticazione';
-  if (error.error instanceof ErrorEvent) {
-    // Errore client-side
-    errorMessage = `Errore: ${error.error.message}`;
-  } else if (error.error && error.error.message) {
-    // Errore server-side con messaggio specifico
-    errorMessage = error.error.message;
+    let errorMessage = 'Errore di autenticazione';
+    if (error.error instanceof ErrorEvent) {
+      // Errore client-side
+      errorMessage = `Errore: ${error.error.message}`;
+    } else if (error.error && error.error.message) {
+      // Errore server-side con messaggio specifico
+      errorMessage = error.error.message;
+    }
+    console.error('An error occurred:', errorMessage);
+    return throwError(() => new Error(errorMessage));
   }
-  console.error('An error occurred:', errorMessage);
-  return throwError(() => new Error(errorMessage));
-}
 
-
-  getUsername(): string  {
+  getUsername(): string | null {
     const token = this.tokenStorage;
-     const decodedToken: any = jwtDecode(token);
-      return  decodedToken.username; 
-   }
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      return decodedToken.username;
+    }
+    return null;
+  }
 
-   getUserName(): string | null {
+  getUserName(): string | null {
     const token = this.tokenStorage;
-     const decodedToken: any = jwtDecode(token);
-     console.log(decodedToken.nome + 'nome decoded token');
-      return  this.capitalizeFirstLetter(decodedToken.nome); 
-   }
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      console.log(`${decodedToken.nome} nome decoded token`);
+      return this.capitalizeFirstLetter(decodedToken.nome);
+    }
+    return null;
+  }
 
-    capitalizeFirstLetter(string: string) {
+  capitalizeFirstLetter(string: string): string {
     return string.charAt(0).toUpperCase() + string.slice(1);
-}
+  }
 
-   getCurrentUser() {
+  getCurrentUser(): any {
     const token = this.tokenStorage;
-     const decodedToken: any = jwtDecode(token);
-     console.log(decodedToken.currentUser);
-      return decodedToken.currentUser; 
+    if (token) {
+      const decodedToken: any = jwtDecode(token);
+      console.log(decodedToken.currentUser);
+      return decodedToken.currentUser;
+    }
+    return null;
   }
 
   isAdmin(): boolean {
-    if (this.getCurrentUser().includes('ROLE_ADMIN')){
+    const currentUser = this.getCurrentUser();
+    if (currentUser && currentUser.includes('ROLE_ADMIN')) {
       return true;
-    }else {
+    } else {
       return false;
     }
   }
 }
-

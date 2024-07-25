@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Auto } from '../../models/auto.model';
-import { Localita } from '../../models/localita.enum';
-import { CarService } from '../../services/car.service';
-import { PrenotazioneService } from '../../services/prenotazione.service';
+import { Auto } from '../../../models/auto.model';
+import { Localita } from '../../../models/localita.enum';
+import { CarService } from '../../../services/car.service';
+import { PrenotazioneService } from '../../../services/prenotazione.service';
 import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Prenotazione } from '../../models/prenotazione.model';
-import { AuthService } from '../../auth/auth.service';
-import { UtenteService } from '../../services/utente.service';
-import { Utente } from '../../models/utente.model';
-import { ConfirmModalComponent } from '../confirm-modal/confirm-modal.component';
+import { Prenotazione } from '../../../models/prenotazione.model';
+import { AuthService } from '../../../auth/auth.service';
+import { UtenteService } from '../../../services/utente.service';
+import { Utente } from '../../../models/utente.model';
+import { ConfirmModalComponent } from '../../confirm/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-auto-detail',
@@ -95,7 +95,7 @@ export class AutoDetailComponent implements OnInit {
     if (this.auto && this.selectedPickupDate && this.selectedDropoffDate) {
       const username = this.authService.getUsername();
       
-      this.utenteService.getUtenteByUsername(username).subscribe({
+      this.utenteService.getUtenteByUsername(username!).subscribe({
         next: (utente: Utente) => {
           const prenotazione: Prenotazione = {
             id: undefined,

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PrenotazioneService } from '../../services/prenotazione.service';
-import { Prenotazione } from '../../models/prenotazione.model';
+import { PrenotazioneService } from '../../../services/prenotazione.service';
+import { Prenotazione } from '../../../models/prenotazione.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

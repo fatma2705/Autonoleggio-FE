@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SiderComponent } from '../sider/sider.component';
 import { MatToolbar } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +8,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-user-home',
   standalone: true,
-  imports: [SiderComponent,MatToolbar,RouterLink],
+  imports: [MatToolbar,RouterLink],
   templateUrl: './user-home.component.html',
   styleUrl: './user-home.component.css'
 })
