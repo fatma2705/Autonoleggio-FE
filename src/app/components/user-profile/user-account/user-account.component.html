@@ -8,12 +8,13 @@
   <!-- Sezione per visualizzare i dati dell'utente -->
   <div class="profile-section">
     <h3>Profilo Utente</h3>
-    <p><strong>Username:</strong> {{ user.username }}</p>
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Nome:</strong> {{ user.nome }}</p>
-    <p><strong>Cognome:</strong> {{ user.cognome }}</p>
-    <p><strong>Attivo:</strong> {{ user.attivo ? 'Sì' : 'No' }}</p>
-    <p><strong>Data Conseguimento Patente:</strong> {{ user.dataConseguimentoPatente | date }}</p>
+    <p><strong>Username:</strong> <span class="user-data">{{ user.username }}</span></p>
+    <p><strong>Email:</strong> <span class="user-data">{{ user.email }}</span></p>
+    <p><strong>Nome:</strong> <span class="user-data">{{ user.nome }}</span></p>
+    <p><strong>Cognome:</strong> <span class="user-data">{{ user.cognome }}</span></p>
+    <p><strong>Attivo:</strong> <span class="user-data">{{ user.attivo ? 'Sì' : 'No' }}</span></p>
+    <p><strong>Data Conseguimento Patente:</strong> <span class="user-data">{{ user.dataConseguimentoPatente | date }}</span></p>
+    <p><strong>Credito Disponibile:</strong> <span class="user-data">{{ user.creditoDisponibile | currency:'EUR' }}</span></p>
   </div>
 
   <!-- Sezione per gestire il credito dell'account -->

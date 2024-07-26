@@ -9,33 +9,40 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6); /* Sfondo semitrasparente */
+  overflow: hidden; /* Evita lo scroll della finestra */
 }
 
 /* Contenuto del dialogo */
-
 .dialog__container {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
-  width: 100%;
+  max-width: 400px; /* Riduci la larghezza massima del dialogo */
+  width: 100%; /* Imposta la larghezza al 100% del contenitore */
   max-height: 80vh; /* Limita l'altezza massima */
+  overflow: hidden; /* Nascondi qualsiasi overflow */
+  box-sizing: border-box; /* Include il padding nella larghezza e altezza totale */
 }
 
 /* Contenuto principale del dialogo */
 .dialog__content {
   margin-bottom: 20px;
-  max-height: 50vh; /* Limita l'altezza del contenuto principale */
+  max-height: calc(80vh - 60px); /* Limita l'altezza del contenuto principale considerando il footer */
+  overflow: hidden; /* Nascondi eventuali scroll orizzontali */
+  overflow-y: auto; /* Permetti lo scroll verticale se necessario */
 }
 
+/* Titolo del dialogo */
 .confirm__headline {
   font-size: 1.5em;
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
+  word-wrap: break-word; /* Mantieni il testo all'interno dei limiti */
 }
 
+/* Footer del dialogo */
 .dialog__footer {
   display: flex;
   justify-content: flex-end;

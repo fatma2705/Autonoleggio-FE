@@ -50,27 +50,42 @@ showConfirmationModal: boolean = false;
   }
 
   confirmPayment(): void {
-    // Simula il pagamento
-    console.log('Processing payment:', this.paymentDetails);
+  // Simula il pagamento
+  console.log('Processing payment:', this.paymentDetails);
 
-    // Dopo il pagamento, aggiorna il credito dell'utente
-    const username = this.authService.getUsername();
-    if (username) {
-      this.utenteService.aggiornaCredito(this.creditAmount).subscribe({
-        next: () => {
-          console.log('Credit updated successfully');
-          this.paymentSuccess = true; // Mostra il messaggio di conferma
-          setTimeout(() => {
-            this.router.navigate(['/user/account']); // Naviga dopo un breve ritardo
-          }, 2000); // Ritardo di 2 secondi
-        },
-        error: (err) => {
-          console.error('Error updating credit:', err);
-        }
-      });
-      this.closeConfirmation(); // Chiudi la modale dopo la conferma
-    } else {
-      console.error('Username not found');
-    }
+  // Ottieni l'username dell'utente
+  const username = this.authService.getUsername();
+  if (username) {
+    // Ottieni i dati dell'utente
+    this.utenteService.getUtenteByUsername(username).subscribe({
+      next: (user) => {
+        // Calcola il nuovo credito disponibile
+        const nuovoCredito = (user.creditoDisponibile || 0) + this.creditAmount;
+
+        // Aggiorna il credito dell'utente
+        user.creditoDisponibile = nuovoCredito;
+
+        this.utenteService.aggiornaCredito(nuovoCredito).subscribe({
+          next: () => {
+            console.log('Credit updated successfully');
+            this.paymentSuccess = true; // Mostra il messaggio di conferma
+            setTimeout(() => {
+              this.router.navigate(['/user/account']); // Naviga dopo un breve ritardo
+            }, 2000); // Ritardo di 2 secondi
+          },
+          error: (err) => {
+            console.error('Error updating credit:', err);
+          }
+        });
+
+        this.closeConfirmation(); // Chiudi la modale dopo la conferma
+      },
+      error: (err) => {
+        console.error('Error fetching user data:', err);
+      }
+    });
+  } else {
+    console.error('Username not found');
   }
+}
 }
