@@ -1,11 +1,12 @@
 .auto-detail-container {
   display: flex;
+  flex-wrap: wrap; /* Per garantire la reattività su schermi più piccoli */
   margin: 20px;
   gap: 20px; /* Spazio tra l'immagine e le informazioni */
 }
 
 .auto-image {
-  flex: 1;
+  flex: 1 1 100%; /* Garantisce che l'immagine occupi l'intera larghezza su schermi piccoli */
   max-width: 400px; /* Imposta una larghezza massima per l'immagine */
   overflow: hidden;
   border-radius: 8px;
@@ -19,7 +20,7 @@
 }
 
 .auto-info {
-  flex: 2;
+  flex: 2 1 100%; /* Garantisce che le informazioni occupino l'intera larghezza su schermi piccoli */
   margin-left: 20px;
   max-width: 600px; /* Imposta una larghezza massima per le informazioni */
 }
@@ -36,10 +37,16 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  transition: background-color 0.3s ease; /* Transizione per il cambio di colore */
 }
 
 .rental-details button:hover {
   background-color: #0056b3;
+}
+
+.rental-details button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .form-group {
@@ -51,11 +58,13 @@
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form-group input, 
+.form-group select {
   width: 100%;
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  box-sizing: border-box; /* Assicura che il padding e il bordo siano inclusi nella larghezza totale */
 }
 
 h1 {

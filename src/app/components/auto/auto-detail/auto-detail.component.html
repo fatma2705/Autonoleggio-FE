@@ -1,6 +1,3 @@
-
-
-
 <div *ngIf="auto" class="auto-detail-container">
   <div class="auto-image">
     <img [src]="auto.imageUrl" alt="{{ auto.marca }} {{ auto.modello }}" />
@@ -46,7 +43,8 @@
           <input id="dropoffDate" type="date" [(ngModel)]="selectedDropoffDate" name="dropoffDate" (change)="onDateChange()" />
         </div>
         <p><strong>Prezzo Totale:</strong> {{ totalCost | currency }}</p>
-        <button (click)="prenota()">Prenota</button>
+        <p><strong>Credito Corrente:</strong> {{ creditoCorrente | currency }}</p>
+        <button (click)="verificaCredito()">Prenota</button>
         <app-confirm-modal *ngIf="showConfirmModal"
                    [auto]="auto"
                    [selectedPickupLocation]="selectedPickupLocation"
@@ -56,12 +54,12 @@
                    [totalCost]="totalCost"
                    (confirmed)="handleConfirmed()"
                    (cancelled)="handleCancelled()">
-</app-confirm-modal>
+        </app-confirm-modal>
       </div>
     </div>
   </div>
- 
 </div>
- <div *ngIf="messaggio" [ngClass]="{'alert': true, 'alert-success': messaggio.includes('successo'), 'alert-error': messaggio.includes('errore')}">
+
+<div *ngIf="messaggio" [ngClass]="{'alert': true, 'alert-success': messaggio.includes('successo'), 'alert-error': messaggio.includes('errore')}">
   {{ messaggio }}
 </div>
