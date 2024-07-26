@@ -20,6 +20,14 @@ export class UtenteService {
     );
   }
 
+ aggiornaCredito(creditoAggiunto: number): Observable<void> {
+    const url = `${this.baseUrl}/aggiornaCredito`;
+    return this.http.put<void>(url, creditoAggiunto).pipe(
+      map(response => response),
+      catchError(this.handleError)
+    );
+  }
+
   // Gestore degli errori
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';

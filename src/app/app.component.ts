@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./auth/login/login.component"
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/main/navbar/navbar.component';
 import { FooterComponent } from "./components/main/footer/footer.component";
 import {MatToolbarModule} from '@angular/material/toolbar'; 
 

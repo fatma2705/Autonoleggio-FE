@@ -24,7 +24,8 @@ export class RegisterComponent {
     confermaPassword: new FormControl('', [Validators.required]),
     nome: new FormControl('', [Validators.required]),
     cognome: new FormControl('', [Validators.required]),
-    dataConseguimentoPatente: new FormControl('', [Validators.required])
+    dataConseguimentoPatente: new FormControl('', [Validators.required]),
+    creditoDisponibile:  new FormControl(0, [Validators.required])
   }, { validators: this.passwordMatchValidator });
 
   passwordMatchValidator(form: AbstractControl) {

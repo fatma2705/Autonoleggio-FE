@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Auto } from '../../models/auto.model';
-import { CarService } from '../../services/car.service';
+import { AuthService } from '../../../auth/auth.service';
+import { CarService } from '../../../services/car.service';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
-import { Localita } from '../../models/localita.enum';
+import { Localita } from '../../../models/localita.enum';
 import { Router } from '@angular/router';
+import { Auto } from '../../../models/auto.model';
 
 @Component({
   selector: 'app-car-list',
